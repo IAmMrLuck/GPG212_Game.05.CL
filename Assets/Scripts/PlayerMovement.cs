@@ -3,31 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlayerMovement : MonoBehaviour
+namespace CDF05
 {
-    
-    [SerializeField] private GameObject playerCharacter;
-    [SerializeField] private Rigidbody2D playerCharacterRB;
-    [SerializeField] private float movementSpeed;
-    private Vector2 _movementVector;
 
-    
-
-    void Start()
+    public class PlayerMovement : MonoBehaviour
     {
-        playerCharacterRB.GetComponent<Rigidbody2D>();
 
-    }
+        // simple character movement controller
+        // FEEL FREE TO TWEAK OR CHANGE IF NEEDED 
 
 
-    void Update()
-    {
-        _movementVector.x = Input.GetAxisRaw("Horizontal");
-        _movementVector.y = Input.GetAxisRaw("Vertical");
-    }
+        [SerializeField] private GameObject playerCharacter;
+        [SerializeField] private Rigidbody2D playerCharacterRB;
+        [SerializeField] private float movementSpeed;
+        private Vector2 _movementVector;
 
-    private void FixedUpdate()
-    {
-        playerCharacterRB.MovePosition(playerCharacterRB.position + _movementVector * movementSpeed * Time.fixedDeltaTime);
+        void Start()
+        {
+            playerCharacterRB.GetComponent<Rigidbody2D>();
+        }
+
+
+        void Update()
+        {
+            _movementVector.x = Input.GetAxisRaw("Horizontal");
+            _movementVector.y = Input.GetAxisRaw("Vertical");
+        }
+
+        private void FixedUpdate()
+        {
+            playerCharacterRB.MovePosition(playerCharacterRB.position + _movementVector * movementSpeed * Time.fixedDeltaTime);
+        }
     }
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 [System.Serializable]
 public class Dialogue 
-{
+{ 
+    // the is our Custom Class
+
     public string name;
 
     [TextArea(3, 5)]
