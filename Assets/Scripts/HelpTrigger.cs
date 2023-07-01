@@ -6,70 +6,52 @@ using UnityEngine;
 namespace CDF05
 {
     /// <summary>
-    /// THIS CODE IS NOT FINISHED
-    /// I've tried calling the coroutine from Update, but it just runs every frame causing a flicker
-    /// calling it whilst in the trigger will work, but it won't stop the function when the player leaves
-    /// setting an if() doesn't assist in Update - the same flickering happens
+    /// this functions now
+    /// The playercharacter enters the trigger, and it turns on the message
+    /// then it waits for time and when the player leaves the tirgger, It doesn't stop instantly
+    /// It doesn't flicker - It's functioning well
     /// </summary>
 
 
     public class HelpTrigger : MonoBehaviour
     {
+        [SerializeField] private GameObject playerTag;
         [SerializeField] private GameObject helpMessage;
-        private Coroutine _helpCoroutine;
         private bool _isPlayerCloseEnough;
 
         private void Start()
         {
-            helpMessage.SetActive(false);
+            helpMessage.SetActive(false); 
             _isPlayerCloseEnough = false;
         }
 
-        private void Update()
-        {
-            if (_isPlayerCloseEnough)
-            {
-                StartCoroutine(ShowHelpMessage());
-            }
-            else return;
-        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Trigger entered");
-            StartHelpCoroutine();
-            _isPlayerCloseEnough = true;
+            if (playerTag.CompareTag("Player")) // this playerTag might not be neccessary - but if we add something else it will save us then
+            {
+                Debug.Log("Trigger entered");
+                _isPlayerCloseEnough = true;
+                StartCoroutine(ShowHelpMessage());
+            }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            Debug.Log("Left Trigger");
-            StopHelpCoroutine();
-            _isPlayerCloseEnough = false;
-        }
-
-        public void StartHelpCoroutine()
-        {
-            if (_helpCoroutine == null)
+            if (playerTag.CompareTag("Player"))
             {
-                _helpCoroutine = StartCoroutine(ShowHelpMessage());
+                Debug.Log("Left Trigger");
+                StopCoroutine(ShowHelpMessage());
+                _isPlayerCloseEnough = false;
             }
         }
-
-        public void StopHelpCoroutine()
-        {
-            if (_helpCoroutine != null)
-            {
-                StopCoroutine(_helpCoroutine);
-                _helpCoroutine = null;
-            }
-        }
-
 
         private IEnumerator ShowHelpMessage()
         {
             while (_isPlayerCloseEnough)
-            {
+            { // this coroutine is used to set the callout by the NPC's to play be on and off for 3 second intervals
+                // it should give the effect of someone calling out in the darkness
+                
                 helpMessage.SetActive(true);
 
                 yield return new WaitForSeconds(3);

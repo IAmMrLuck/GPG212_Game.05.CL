@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 namespace CDF05
 {
 
-    public class PlayerMovement : MonoBehaviour
+    public class CharacterMovement : MonoBehaviour
     {
 
         // simple character movement controller
