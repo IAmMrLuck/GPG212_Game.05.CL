@@ -6,6 +6,13 @@ using TMPro;
 namespace CDF05
 {
 
+    /// <summary>
+    /// If you want to have a play around with the dialogue function
+    /// Check out the StartConvo Button 
+    /// You can edit, remove or increase the number of sentences
+    /// As well as change the name of the person you're talking to
+    /// </summary>
+    
 
     public class DialogueManager : MonoBehaviour
     {

@@ -17,7 +17,9 @@ namespace CDF05
     {
         [SerializeField] private GameObject playerTag;
         [SerializeField] private GameObject helpMessage;
+
         private bool _isPlayerCloseEnough;
+
 
         private void Start()
         {

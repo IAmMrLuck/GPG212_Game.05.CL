@@ -5,13 +5,14 @@ using UnityEngine.UIElements;
 
 namespace CDF05
 {
+    /// <summary>
+    /// simple character movement controller
+    /// FEEL FREE TO TWEAK OR CHANGE IF NEEDED 
+    /// </summary>
+
 
     public class CharacterMovement : MonoBehaviour
     {
-
-        // simple character movement controller
-        // FEEL FREE TO TWEAK OR CHANGE IF NEEDED 
-
 
         [SerializeField] private GameObject playerCharacter;
         [SerializeField] private Rigidbody2D playerCharacterRB;
@@ -22,7 +23,6 @@ namespace CDF05
         {
             playerCharacterRB.GetComponent<Rigidbody2D>();
         }
-
 
         void Update()
         {
