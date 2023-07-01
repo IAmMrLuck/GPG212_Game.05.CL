@@ -16,7 +16,7 @@ namespace CDF05
     public class HelpTrigger : MonoBehaviour
     {
         [SerializeField] private GameObject helpMessage;
-        // private Coroutine _helpCoroutine;
+        private Coroutine _helpCoroutine;
         private bool _isPlayerCloseEnough;
 
         private void Start()
@@ -37,15 +37,33 @@ namespace CDF05
         private void OnTriggerEnter2D(Collider2D collision)
         {
             Debug.Log("Trigger entered");
+            StartHelpCoroutine();
             _isPlayerCloseEnough = true;
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             Debug.Log("Left Trigger");
+            StopHelpCoroutine();
             _isPlayerCloseEnough = false;
         }
 
+        public void StartHelpCoroutine()
+        {
+            if (_helpCoroutine == null)
+            {
+                _helpCoroutine = StartCoroutine(ShowHelpMessage());
+            }
+        }
+
+        public void StopHelpCoroutine()
+        {
+            if (_helpCoroutine != null)
+            {
+                StopCoroutine(_helpCoroutine);
+                _helpCoroutine = null;
+            }
+        }
 
 
         private IEnumerator ShowHelpMessage()
