@@ -27,6 +27,7 @@ namespace CDF05
             nameText.text = dialogue.name;
 
             _sentences.Clear();
+            // used to the clear the queue of any elements - I guess this is to ensure there's nothing left over in the queue before calling our next method?
 
             foreach (string sentence in dialogue.sentences)
             {
