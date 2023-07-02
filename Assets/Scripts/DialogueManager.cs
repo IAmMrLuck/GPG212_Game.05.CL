@@ -7,6 +7,7 @@ namespace CDF05
 {
 
     /// <summary>
+    /// Based on Brackeys Dialogue Tutorial
     /// If you want to have a play around with the dialogue function
     /// Check out the StartConvo Button 
     /// You can edit, remove or increase the number of sentences
@@ -18,6 +19,8 @@ namespace CDF05
     {
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text dialogueText;
+        [SerializeField] private Animator dialogueOpen;
+        [SerializeField] private float letterDelay;
 
         private Queue<string> _sentences;
 
@@ -28,6 +31,8 @@ namespace CDF05
 
         public void StartDialogue(Dialogue dialogue)
         {
+            dialogueOpen.SetBool("isOpen", true);
+
             // this will be the function which is called by the trigger 
             // this starts the queue of sentences and attches a name to the dialogue box
 
@@ -57,12 +62,27 @@ namespace CDF05
 
             string sentence = _sentences.Dequeue();
             dialogueText.text = sentence;
+            StopCoroutine(TypeSentence(sentence));
+            StartCoroutine(TypeSentence(sentence));
+
+        }
+
+        IEnumerator TypeSentence(string sentence)
+        {
+            dialogueText.text = "";
+            
+            foreach (char letter in sentence.ToCharArray())
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(letterDelay);
+            }
         }
 
         public void EndDialogue()
         {
             // prevents the sentences from simply looping again
             // or throwing any errors - no in game functionality yet
+            dialogueOpen.SetBool("isOpen", false);
 
             Debug.Log("End of conversation");
         }
