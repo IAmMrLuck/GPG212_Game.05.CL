@@ -62,9 +62,9 @@ namespace CDF05
 
             string sentence = _sentences.Dequeue();
             dialogueText.text = sentence;
-            StopCoroutine(TypeSentence(sentence));
+            StopAllCoroutines(); 
             StartCoroutine(TypeSentence(sentence));
-
+            // we need to run StopAllCoroutines() rather than just StopCoroutine because it gives a really weird glitch. Might be funt to work with somehow
         }
 
         IEnumerator TypeSentence(string sentence)
@@ -74,7 +74,7 @@ namespace CDF05
             foreach (char letter in sentence.ToCharArray())
             {
                 dialogueText.text += letter;
-                yield return new WaitForSeconds(letterDelay);
+                yield return new WaitForSeconds(0.01f);
             }
         }
 
