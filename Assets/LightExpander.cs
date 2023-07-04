@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class LightExpander : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Light _light;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        _light = GetComponent<Light>();
+    }
+    public void GiveMeLight()
+    {
+        _light.range = 5;
     }
 }
