@@ -16,12 +16,15 @@ namespace CDF05
     {
         public GameObject followerPrefab;
 
-        public void SpawnFollower()
+        private void Start()
         {
-            Instantiate(followerPrefab, transform.position, Quaternion.identity);
+            followerPrefab.SetActive(false);
+        }
 
-            Destroy(gameObject);
 
+        public void SetFollowerToActive()
+        {
+            followerPrefab.SetActive(true);
         }
 
     }

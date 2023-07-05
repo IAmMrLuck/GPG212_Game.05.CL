@@ -2,56 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 namespace CDF05
 {
     public class ButtonChoiceManager : MonoBehaviour
     {
-        [SerializeField] private GameObject buttonChoicesParent;
-        [SerializeField] private GameObject buttonPrefab;
+        [SerializeField] private TextMeshProUGUI textMeshProUGUI;
+        [SerializeField] private Button yesButton;
+        [SerializeField] private Button noButton;
 
-        private ButtonChoice _acceptButton;
-        private ButtonChoice _declineButton;
-
-        private void Start()
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            _acceptButton = CreateButton("Accept");
-            _declineButton = CreateButton("Decline");
+         
+            // this is a LAMBDA 
+            // I don't know what that means
 
-            // Select the Accept button by default
-            _acceptButton.SetSelected(true);
+            ShowQuestion("Do you trust me..?",
+                () =>
+                {
+                    Debug.Log("yes");
+                },
+                () =>
+                {
+                    Debug.Log("no");
+                });
         }
 
-        private void Update()
+        public void ShowQuestion(string questionText, Action yesAction, Action noAction)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                SelectButtonChoice(_declineButton);
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                SelectButtonChoice(_acceptButton);
-            }
+            textMeshProUGUI.text = questionText;
+            yesButton.onClick.AddListener(new UnityEngine.Events.UnityAction(yesAction));
+            noButton.onClick.AddListener(new UnityEngine.Events.UnityAction(noAction));
         }
 
-        public void ShowButtonChoices()
-        {
-            buttonChoicesParent.SetActive(true);
-        }
-
-        private ButtonChoice CreateButton(string buttonText)
-        {
-            GameObject buttonGO = Instantiate(buttonPrefab, buttonChoicesParent.transform);
-            ButtonChoice buttonChoice = buttonGO.GetComponent<ButtonChoice>();
-            buttonChoice.SetupButton(buttonText);
-            return buttonChoice;
-        }
-
-        private void SelectButtonChoice(ButtonChoice buttonChoice)
-        {
-            // Set the selected state for the button choices
-            _acceptButton.SetSelected(buttonChoice == _acceptButton);
-            _declineButton.SetSelected(buttonChoice == _declineButton);
-        }
     }
 }

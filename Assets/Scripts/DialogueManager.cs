@@ -92,7 +92,6 @@ namespace CDF05
             // or throwing any errors - no in game functionality yet
             dialogueOpen.SetBool("isOpen", false);
 
-            _buttonChoiceManager.ShowButtonChoices();
             // needs to call a button choice to either accept or decline
 
 
