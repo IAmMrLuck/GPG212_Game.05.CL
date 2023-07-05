@@ -24,9 +24,13 @@ namespace CDF05
 
         private Queue<string> _sentences;
 
+        private bool _isDialogueEnd;
+        private ButtonChoiceManager _buttonChoiceManager;
+
         void Start()
         {
             _sentences = new Queue<string>();
+            _buttonChoiceManager = FindObjectOfType<ButtonChoiceManager>();
         }
 
         public void StartDialogue(Dialogue dialogue)
@@ -56,7 +60,11 @@ namespace CDF05
 
             if (_sentences.Count == 0)
             {
-                EndDialogue();
+                if (!_isDialogueEnd)
+                {
+                    _isDialogueEnd = true;
+                    EndDialogue();
+                }
                 return;
             }
 
@@ -83,6 +91,10 @@ namespace CDF05
             // prevents the sentences from simply looping again
             // or throwing any errors - no in game functionality yet
             dialogueOpen.SetBool("isOpen", false);
+
+            _buttonChoiceManager.ShowButtonChoices();
+            // needs to call a button choice to either accept or decline
+
 
             Debug.Log("End of conversation");
         }

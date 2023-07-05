@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using TMPro;
 using UnityEngine;
 
 namespace CDF05
@@ -16,8 +17,7 @@ namespace CDF05
     public class HelpTrigger : MonoBehaviour
     {
         [SerializeField] private GameObject playerTag;
-        [SerializeField] private GameObject helpMessage;
-
+        [SerializeField] private GameObject helpMessage; //change to text object in inspector
         private bool _isPlayerCloseEnough;
 
 
