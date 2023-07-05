@@ -17,6 +17,8 @@ namespace CDF05
     public class HelpTrigger : MonoBehaviour
     {
         [SerializeField] private GameObject playerTag;
+        [SerializeField] private GameObject conversationTrigger;
+
         [SerializeField] private GameObject helpMessage; //change to text object in inspector
         private bool _isPlayerCloseEnough;
 
@@ -25,6 +27,7 @@ namespace CDF05
         {
             helpMessage.SetActive(false); 
             _isPlayerCloseEnough = false;
+            conversationTrigger.SetActive(false);
         }
 
 
@@ -35,6 +38,7 @@ namespace CDF05
                 Debug.Log("Trigger entered");
                 _isPlayerCloseEnough = true;
                 StartCoroutine(ShowHelpMessage());
+                conversationTrigger.SetActive(true);
             }
         }
 
@@ -45,6 +49,8 @@ namespace CDF05
                 Debug.Log("Left Trigger");
                 StopCoroutine(ShowHelpMessage());
                 _isPlayerCloseEnough = false;
+                conversationTrigger.SetActive(false);
+
             }
         }
 
