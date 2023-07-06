@@ -13,20 +13,23 @@ namespace CDF05
         [SerializeField] private Button yesButton;
         [SerializeField] private Button noButton;
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        public Animator _animator;
+
+
+        public void RunShowQuestion()
         {
-         
+            _animator.SetBool("isOpen", true);
             // this is a LAMBDA 
             // I don't know what that means
 
             ShowQuestion("Do you trust me..?",
                 () =>
                 {
-                    Debug.Log("yes");
+                    Debug.Log("Yes");
                 },
                 () =>
                 {
-                    Debug.Log("no");
+                    Debug.Log("No");
                 });
         }
 
@@ -35,6 +38,12 @@ namespace CDF05
             textMeshProUGUI.text = questionText;
             yesButton.onClick.AddListener(new UnityEngine.Events.UnityAction(yesAction));
             noButton.onClick.AddListener(new UnityEngine.Events.UnityAction(noAction));
+        }
+
+        public void CloseChoices()
+        {
+            _animator.SetBool("isOpen", false);
+
         }
 
     }

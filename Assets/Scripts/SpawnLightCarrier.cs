@@ -11,10 +11,14 @@ namespace CDF05
 /// if they say no, this script won't be called
 /// 
 /// </summary>
+/// 
+
 
     public class SpawnLightCarrier : MonoBehaviour
     {
         public GameObject followerPrefab;
+        public GameObject lightCarrierPrefab;
+        public Animator animator;
 
         private void Start()
         {
@@ -25,6 +29,8 @@ namespace CDF05
         public void SetFollowerToActive()
         {
             followerPrefab.SetActive(true);
+            lightCarrierPrefab.SetActive(false);
+            animator.SetBool("isOpen", false);
         }
 
     }

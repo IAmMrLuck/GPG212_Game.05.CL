@@ -20,6 +20,7 @@ namespace CDF05
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text dialogueText;
         [SerializeField] private Animator dialogueOpen;
+
         [SerializeField] private float letterDelay;
 
         private Queue<string> _sentences;
@@ -93,7 +94,7 @@ namespace CDF05
             dialogueOpen.SetBool("isOpen", false);
 
             // needs to call a button choice to either accept or decline
-
+            _buttonChoiceManager.RunShowQuestion();
 
             Debug.Log("End of conversation");
         }
