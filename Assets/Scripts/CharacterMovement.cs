@@ -42,5 +42,7 @@ namespace CDF05
         {
             playerCharacterRB.MovePosition(playerCharacterRB.position + _movementVector * movementSpeed * Time.fixedDeltaTime);
         }
+
+
     }
 }
