@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class LightExpander : MonoBehaviour
 {
-    private Light _light;
+    private UnityEngine.Rendering.Universal.Light2D _light;
 
     private void Start()
     {
-        _light = GetComponent<Light>();
+        _light = GetComponent<UnityEngine.Rendering.Universal.Light2D>();
     }
     public void GiveMeLight()
     {
-        _light.range = 5;
+        _light.pointLightOuterRadius = 5;
     }
 }
