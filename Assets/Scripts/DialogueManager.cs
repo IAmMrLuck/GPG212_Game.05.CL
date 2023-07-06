@@ -26,12 +26,12 @@ namespace CDF05
         private Queue<string> _sentences;
 
         private bool _isDialogueEnd;
-        private ButtonChoiceManager _buttonChoiceManager;
+        public ButtonChoiceManager currentButtonChoiceManager;
 
         void Start()
         {
-            _sentences = new Queue<string>();
-            _buttonChoiceManager = FindObjectOfType<ButtonChoiceManager>();
+            _sentences = new();
+            //_buttonChoiceManager = FindObjectOfType<ButtonChoiceManager>();
         }
 
         public void StartDialogue(Dialogue dialogue)
@@ -94,7 +94,8 @@ namespace CDF05
             dialogueOpen.SetBool("isOpen", false);
 
             // needs to call a button choice to either accept or decline
-            _buttonChoiceManager.RunShowQuestion();
+            currentButtonChoiceManager.RunShowQuestion();
+            //buttonChoiceManager.RunShowQuestion();
 
             Debug.Log("End of conversation");
         }

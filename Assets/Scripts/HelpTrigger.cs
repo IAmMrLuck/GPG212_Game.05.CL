@@ -22,9 +22,13 @@ namespace CDF05
         [SerializeField] private GameObject helpMessage; //change to text object in inspector
         private bool _isPlayerCloseEnough;
 
+        [SerializeField] private ButtonChoiceManager buttonChoiceManager;
+        private DialogueManager _dialogueManager;
+
 
         private void Start()
         {
+            _dialogueManager = FindObjectOfType<DialogueManager>();
             helpMessage.SetActive(false); 
             _isPlayerCloseEnough = false;
             conversationTrigger.SetActive(false);
@@ -35,6 +39,7 @@ namespace CDF05
         {
             if (playerTag.CompareTag("Player")) // this playerTag might not be neccessary - but if we add something else it will save us then
             {
+                _dialogueManager.currentButtonChoiceManager = buttonChoiceManager;
                 Debug.Log("Trigger entered");
                 _isPlayerCloseEnough = true;
                 StartCoroutine(ShowHelpMessage());
@@ -46,6 +51,8 @@ namespace CDF05
         {
             if (playerTag.CompareTag("Player"))
             {
+                _dialogueManager.currentButtonChoiceManager = null;
+
                 Debug.Log("Left Trigger");
                 StopCoroutine(ShowHelpMessage());
                 _isPlayerCloseEnough = false;
