@@ -36,7 +36,6 @@ namespace CDF05
 
         public void StartDialogue(Dialogue dialogue)
         {
-            _isDialogueEnd = false;
             dialogueOpen.SetBool("isOpen", true);
 
             // this will be the function which is called by the trigger 
@@ -90,6 +89,8 @@ namespace CDF05
 
         public void EndDialogue()
         {
+            _isDialogueEnd = false;
+
             // prevents the sentences from simply looping again
             // or throwing any errors - no in game functionality yet
             dialogueOpen.SetBool("isOpen", false);
