@@ -40803,7 +40803,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 740911065200312322, guid: 21242ad8e7b6eea45ae14086adba3e42, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911065200312323, guid: 21242ad8e7b6eea45ae14086adba3e42, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 740911065200312324, guid: 21242ad8e7b6eea45ae14086adba3e42, type: 3}
       propertyPath: m_RootOrder
