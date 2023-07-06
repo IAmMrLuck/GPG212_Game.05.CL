@@ -34,6 +34,8 @@ namespace CDF05
             _animator.SetFloat("Vertical", _movementVector.y);
             _animator.SetFloat("Speed", _movementVector.sqrMagnitude);
 
+            _movementVector.Normalize();
+
         }
 
         private void FixedUpdate()
