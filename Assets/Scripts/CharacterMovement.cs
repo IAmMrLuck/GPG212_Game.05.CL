@@ -18,6 +18,7 @@ namespace CDF05
         [SerializeField] private Rigidbody2D playerCharacterRB;
         [SerializeField] private float movementSpeed;
         private Vector2 _movementVector;
+        public Animator _animator;
 
         void Start()
         {
@@ -28,6 +29,11 @@ namespace CDF05
         {
             _movementVector.x = Input.GetAxisRaw("Horizontal");
             _movementVector.y = Input.GetAxisRaw("Vertical");
+
+            _animator.SetFloat("Horizontal", _movementVector.x);
+            _animator.SetFloat("Vertical", _movementVector.y);
+            _animator.SetFloat("Speed", _movementVector.sqrMagnitude);
+
         }
 
         private void FixedUpdate()
