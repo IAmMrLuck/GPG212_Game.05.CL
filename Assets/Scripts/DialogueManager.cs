@@ -36,6 +36,7 @@ namespace CDF05
 
         public void StartDialogue(Dialogue dialogue)
         {
+            _isDialogueEnd = false;
             dialogueOpen.SetBool("isOpen", true);
 
             // this will be the function which is called by the trigger 
@@ -97,7 +98,7 @@ namespace CDF05
             currentButtonChoiceManager.RunShowQuestion();
             
             //buttonChoiceManager.RunShowQuestion();
-
+            
             Debug.Log("End of conversation");
         }
 

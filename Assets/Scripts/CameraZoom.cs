@@ -6,36 +6,46 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
-    public float zoomOutSize = 8f;
     public float zoomSpeed = 2f;
-
-    private float originalSize;
     private float targetSize;
     private bool isZooming;
+
+    private float timeElapsed;
+    private float lerpDuration = 50f;
+
+    private float newSize;
 
     private void Start()
     {
         // Store the original orthographic size
-        originalSize = virtualCamera.m_Lens.OrthographicSize;
-        targetSize = originalSize;
+        virtualCamera.m_Lens.OrthographicSize = 5f;
+        
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void MakeCameraLarger(float cameraZoom)
     {
-        if (other.CompareTag("Player"))
-        {
-            // Start zooming out
-            targetSize = zoomOutSize;
-            isZooming = true;
-        }
+        // Start zooming out
+        targetSize = cameraZoom;
+        isZooming = true;
+        timeElapsed = 0f;
     }
 
     private void Update()
     {
         if (isZooming)
         {
+            if(timeElapsed < lerpDuration)
+            {
+                newSize = Mathf.Lerp(virtualCamera.m_Lens.OrthographicSize, targetSize, timeElapsed / lerpDuration);
+                timeElapsed += Time.deltaTime;
+            }
+            else
+            {
+                newSize = targetSize; 
+            }
             // Smoothly interpolate between current size and target size
-            float newSize = Mathf.Lerp(virtualCamera.m_Lens.OrthographicSize, targetSize, zoomSpeed * Time.deltaTime);
+           
+
 
             // Apply the new size to the camera
             virtualCamera.m_Lens.OrthographicSize = newSize;
