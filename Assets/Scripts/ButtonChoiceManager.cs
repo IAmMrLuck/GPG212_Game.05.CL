@@ -12,9 +12,31 @@ namespace CDF05
         [SerializeField] private TextMeshProUGUI textMeshProUGUI;
         [SerializeField] private Button yesButton;
         [SerializeField] private Button noButton;
+        private KeyCode yesKey = KeyCode.Y;
+        private KeyCode noKey = KeyCode.N;
 
         public Animator _animator;
 
+        void Update()
+        {
+            if (Input.GetKeyDown(yesKey))  // currently set to "E"
+            {
+                if (yesButton != null)
+                {
+                    // Trigger the selected button's click event
+                    yesButton.onClick.Invoke();
+                }
+            }
+
+            if (Input.GetKeyDown(noKey))  // currently set to "E"
+            {
+                if (noButton != null)
+                {
+                    // Trigger the selected button's click event
+                    noButton.onClick.Invoke();
+                }
+            }
+        }
 
         public void RunShowQuestion()
         {

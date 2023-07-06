@@ -95,6 +95,7 @@ namespace CDF05
 
             // needs to call a button choice to either accept or decline
             currentButtonChoiceManager.RunShowQuestion();
+            
             //buttonChoiceManager.RunShowQuestion();
 
             Debug.Log("End of conversation");
