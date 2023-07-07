@@ -19,11 +19,10 @@ public class EndGame : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetBool("isOpen", true);
         // this is a LAMBDA 
         // I don't know what that means
 
-        ShowQuestion("Was this easier with help?",
+        ShowQuestion("Don't you think things are easier with help?",
             () =>
             {
                 Debug.Log("Yes");
